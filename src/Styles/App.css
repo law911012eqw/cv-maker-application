@@ -1,0 +1,200 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+div {
+  margin-bottom: 12px;
+}
+
+/********** FORM SECTION **********/
+form {
+  background: white;
+  margin: 0 auto;
+  width: 1300px;
+  box-shadow: 1px 1px 4px 3px rgb(141, 141, 141);
+}
+
+form > div {
+  margin: 20px 0;
+}
+
+label{
+  font-weight: 700;
+}
+
+textarea:focus, input:focus{
+  outline: none;
+}
+
+textarea {
+  resize: none;
+  overflow: hidden;
+  min-height: 50px;
+  max-height: 100px;
+}
+
+input, textarea {
+  border: none;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input:-moz-placeholder,
+input:focus {
+    box-shadow:none !important;
+}
+
+input:invalid {
+    box-shadow:0 0 2px 1px rgb(110, 26, 150);
+}
+
+input[ type=date ] {
+  margin: 1px 6px;
+}
+
+/********** GENERAL-INFO SECTION **********/
+#profile-upper-left, #profile-upper-right{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#profile-user{
+  display: flex;
+  flex-direction: column;
+}
+
+#profile-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  background-color: rgb(34,54,56);
+}
+
+#profile-container > div {
+  margin: 20px 30px;
+}
+
+#profile-name{
+  font-size: 40px;
+  font-weight: 700;
+  width: 800px;
+}
+
+#profile-title{
+  font-size: 22px;
+  font-style: italic;
+}
+
+#profile-summary{
+  border-top: 1px solid white;
+  padding-top: 25px;
+  width: 100%;
+}
+#profile-container input, #profile-container textarea{
+  background-color:  rgb(34,54,56);
+  color: white;
+}
+
+#profile-upper-right > *:not(label){
+  padding: 7px;
+  font-size: 14px;
+}
+
+#profile-upper-right > label{
+  color: white;
+}
+
+#profile-address{
+  height: auto;
+}
+
+/********** EDUCATION SECTION **********/
+#edu-container { font-size: 25px; }
+#edu-container input{
+  background-color: white;
+}
+#edu-container > div, #edu-container {
+  margin: 20px 30px;
+}
+#edu-info{
+  display: flex;
+  flex-direction: column;
+}
+#edu-start-year{ 
+  width: 45px; 
+}
+#edu-start-year, #edu-end-year { font-size: 0.8em; }
+#edu-dates{
+  display: inherit;
+  margin-top: -20px;
+}
+#edu-name{
+  font-size: 0.9em;
+  margin-top: -20px;
+}
+#edu-position{ font-size: 0.6em; }
+
+/********** EXPERIENCES SECTION **********/
+#exp-container { font-size: 25px; }
+#exp-container input{
+  background-color: white;
+}
+#exp-container > div, #exp-container {
+  margin: 20px 30px;
+}
+#exp-info{
+  display: flex;
+  flex-direction: column;
+}
+#exp-start-year{ 
+  width: 45px; 
+}
+#exp-start-year, #exp-end-year { font-size: 0.8em; }
+#exp-dates{
+  display: inherit;
+  margin-top: -20px;
+}
+#exp-company{
+  font-size: 0.9em;
+  margin-top: -20px;
+}
+#exp-position{ font-size: 0.6em; }
