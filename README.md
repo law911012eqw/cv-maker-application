@@ -1,12 +1,24 @@
+## CV Builder
+This app provides a simple CV template deisng to build a short yet sufficient overview regarding your professional life.
+
 ### Todos
 
-#### Mini tasks
-* [] Phone Number Template Output
-* [] Textarea auto resize
+#### Contexts and Functionalities
+* [?] Phone Number Template Output (unneeded)
+* [X] Textarea auto resize
+* [ ] Component Iteration
 
 #### Component Implementations
-* [] Profile
+* [X] Profile Info
 * [] Edu
 * [] Work
+
+*Optional*
 * [] Skills
+* [] Languages
+* [] Certifications
 * [] Interests
+
+#### Component User Options
+* [] Design
+* [] Implementation
