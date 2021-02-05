@@ -16,58 +16,80 @@ class Profile extends React.Component {
             name: 'Beaver Bryan Antipolo',
             title: 'Web Developer',
             email: 'law911012eqw@gmail.com',
-            profile: '[Insert profile summary about yourself]',
-            phone: '9191919191',
-            location: [{
+            profile: '',
+            phone: '(919)-191-9191',
+            location: {
                 address: '8888 Gallagher Rd., ',
-                city: 'Jacksonville, ',
-                state: 'NC',
-                zip: '#####',
-            }],
+                city: 'Jacksonville',
+                state: ' NC',
+                zip: ' 28546',
+            },
         });
-        this.addDashes = this.addDashes.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-    }
-    // componentDidMount() {
-    //     this.Textarea.focus();
-    //     autosize(this.Textarea);
-    // }
 
-    handleChange(e) {
-        this.setState = ({
-            [e.target.name]: e.target.value,
-        })
+        //binding methods to this
+        this.handleFieldChange = this.handleFieldChange.bind(this);
+        this.handleFieldChangeWithObj = this.handleFieldChangeWithObj.bind(this);
     }
-    addDashes(f) {
-        let f_val = f.value.replace(/\D[^\.]/g, "");
-        f.value = f_val.slice(0, 3) + "-" + f_val.slice(3, 6) + "-" + f_val.slice(6);
+
+    //update state throughtout input onchange
+    handleFieldChange(e) {
+        const { name, value } = e.target;
+        this.setState({ [name]: value });
+    }
+    //A seperate field change handler that updates the state with obj property onChange
+    handleFieldChangeWithObj(e) {
+        let nameValue = e.target.name;
+
+        //Splitting the value of the one line input by comma to assigned in on proper states
+        if (!nameValue.includes('.')) {
+            let val = e.target.value;
+            let splitVal = val.split(',');
+            this.setState(prevState => ({
+                [`${nameValue}`]: {
+                    ...prevState.[nameValue],
+                    city: splitVal[0] || '',
+                    state: splitVal[1] || '',
+                    zip: splitVal[2] || ''
+                }
+            }))
+        }
+        //Setting state with new value
+        //Only used for one property at a time
+        else {
+            let splitName = nameValue.split('.');
+            let stateName = splitName[0];
+            let stateProp = splitName[1];
+            this.setState(prevState => ({
+                [`${stateName}`]: {
+                    ...prevState.[stateName],
+                    [`${stateProp}`]: e.target.value
+                }
+            }))
+        }
     }
     render() {
-        console.log(this.state.name);
-        console.log(this.state.email);
-        console.log(this.state.profile);
         console.log(this.state.phone);
         return (
             <div id="profile-container">
                 <div id="profile-upper-left">
                     <div id="profile-user">
                         <Textarea
-                            // ref={c=>this.textarea=c}
                             t="text"
                             id="profile-name"
                             cn="cv-input"
                             name="name"
-                            spellcheck="false"
+                            val={this.state.name}
                             ph={Placeholders.name}
-                            onChange={this.handleChange}
+                            onChange={this.handleFieldChange}
                         />
                         <Input
                             t="text"
                             id="profile-title"
                             cn="cv-input"
                             name="title"
+                            val={this.state.title}
                             ph={Placeholders.title}
-                            onChange={this.handleChange}
+                            onChange={this.handleFieldChange}
                         />
                     </div>
                     <div>
@@ -77,49 +99,54 @@ class Profile extends React.Component {
                             id="profile-summary"
                             cn="cv-input"
                             name="profile"
+                            val={this.state.profile}
                             ph={Placeholders.profile}
-                            onChange={this.handleChange}
+                            onChange={this.handleFieldChange}
                         />
                     </div>
                 </div>
                 <div id="profile-upper-right">
-                    <label>Contacts Info</label>
+                    <label>Contact Info</label>
                     <Input
-                        t="number"
+                        t="text"
                         id="profile-phone"
                         cn="cv-input"
                         name="phone"
-                        min='10'
-                        max='10'
+                        val={this.state.phone}
                         ph={Placeholders.phone}
-                        onChange={this.handleChange}
+                        onChange={this.handleFieldChangeWithManualApproach}
                     />
                     <Input
                         t="email"
                         id="profile-email"
                         cn="cv-input"
                         name="email"
+                        val={this.state.email}
                         ph={Placeholders.email}
-                        onChange={this.handleChange}
+                        onChange={this.handleFieldChange}
                     />
                     <Textarea
                         t="text"
                         id="profile-address"
                         cn="cv-input"
+                        name="location.address"
+                        val={this.state.location.address}
                         ph={`${Placeholders.location[0].address}`}
+                        onChange={this.handleFieldChangeWithObj}
                     />
                     <Textarea
                         t="text"
                         id="profile-location"
                         cn="cv-input"
+                        name="location"
+                        val={`${this.state.location.city},${this.state.location.state},${this.state.location.zip}`}
                         ph={`${Placeholders.location[0].city}${Placeholders.location[0].state}${Placeholders.location[0].zip}`}
+                        onChange={this.handleFieldChangeWithObj}
                     />
                 </div>
             </div>
         );
     }
 }
-
-
 
 export default Profile;

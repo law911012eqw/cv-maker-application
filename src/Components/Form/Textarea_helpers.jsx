@@ -6,9 +6,9 @@ import React from 'react';
 // }
 
 const Textarea = (props) => {
-    const { s, t, id, cn, name, val, ph } = props;
+    const { s, t, id, cn, name, val, ph, onChange } = props;
     return (
-        <textarea style={s} type={t} id={id} className={cn} name={name} value={val} placeholder={ph} ></textarea>
+        <textarea style={s} type={t} id={id} className={cn} name={name} value={val} placeholder={ph} onChange={onChange}></textarea>
     );
 }
 

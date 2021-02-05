@@ -5,7 +5,7 @@ export const Placeholders = {
     title: 'Type your title position',
     email: 'Enter your email',
     profile: '[Insert profile summary about yourself]',
-    phone: '(XXX)-XXX-XXX',
+    phone: '(XXX)-XXX-XXXX',
     location: [{
         address: 'street name',
         city: 'city, ',
@@ -13,15 +13,15 @@ export const Placeholders = {
         zip: 'zip code'
     }],
     education: [{
-        yearStart: '2018',
-        yearEnd: '2020',
-        schoolName: 'name of school',
+        yearStart: 'start',
+        yearEnd: 'end',
+        schoolName: 'Name of school',
         schoolTitle: 'Your major/Student position',
     }],
     //placeholder for experience info inputs
     experiences: [{
-        yearStart: '2020',
-        yearEnd: 'Present',
+        yearStart: 'start',
+        yearEnd: 'end',
         name: 'Name of company',
         position: 'Your job position',
         achievements: '[Insert text here]',
