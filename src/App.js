@@ -6,7 +6,6 @@ import React from 'react';
 import Profile from './Components/Main/Profile';
 import Edu from './Components/Main/Edu';
 import Work from './Components/Main/Work';
-import { AppendComponent } from './Components/Form/append_info'
 //import Others from './Components/Optional/Skills';
 import Input from './Components/Form/Input_helpers';
 import './Styles/App.css';
@@ -18,8 +17,6 @@ class App extends React.Component {
     this.state = {
       editMode: false,
       val: 'Edit',
-      eduNum: 1,
-      expNum: 1,
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -56,13 +53,13 @@ class App extends React.Component {
           {this.state.editMode === true ? (
             <fieldset>
               <Profile />
-              <Edu index={this.state.eduNum}/>
+              <Edu />
               <Work />
             </fieldset>
           ) : (
               <fieldset disabled="none">
                 <Profile />
-                <Edu index={this.state.eduNum} />
+                <Edu />
                 <Work />
               </fieldset>
             )}

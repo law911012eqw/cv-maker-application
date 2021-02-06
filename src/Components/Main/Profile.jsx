@@ -16,7 +16,9 @@ class Profile extends React.Component {
             name: 'Beaver Bryan Antipolo',
             title: 'Web Developer',
             email: 'law911012eqw@gmail.com',
-            profile: '',
+            profile: `The purpose of this text is to confirm  whether the auto resize textarea 
+            will work. Just making sure this paragraph will reach the third line 
+            which now it is with the help of ES6 template string.`,
             phone: '(919)-191-9191',
             location: {
                 address: '8888 Gallagher Rd., ',
@@ -68,7 +70,6 @@ class Profile extends React.Component {
         }
     }
     render() {
-        console.log(this.state.phone);
         return (
             <div id="profile-container">
                 <div id="profile-upper-left">

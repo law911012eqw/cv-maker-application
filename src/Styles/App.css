@@ -111,18 +111,30 @@ input[ type=date ] { margin: 1px 6px; }
 .add-info{
   display: flex;
   flex-direction: row;
-  align-items: center;
   margin-left: 40px;
 }
-.add-info > button {
+.add-info > div{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 20px;
+}
+.add-btn-container > button {
+  background: rgb(34, 32, 32);
+  color: rgb(155, 146, 146);
+  line-height: 17px;
+}
+.rmv-btn-container > button{
+  background: rgb(226, 93, 93);
+  color: rgb(245, 238, 238);
+  line-height: 14px;
+}
+.add-rmv-btns {
   font-weight: 700;
   position: relative;
   text-decoration: none;
-  background: rgb(34, 32, 32);
-  color: rgb(155, 146, 146);
   width: 30px;
   height: 30px;
-  line-height: 17px;
   padding: 5px;
   font-size: 25px;
   border-radius: 50%;
@@ -131,14 +143,20 @@ input[ type=date ] { margin: 1px 6px; }
   transition: .2s;
 }
 
-.add-info > button:hover{
+.add-btn-container > button:hover{
   box-shadow: none;
   transform: rotateZ(360deg) scale(1.2);
+  transition: transform 150ms ease-out;
+}
+.rmv-btn-container > button:hover{
+  box-shadow: none;
+  transform: rotateZ(-360deg) scale(1.2);
   transition: transform 150ms ease-out;
 }
 
 .add-info-text{
   font-size: 14px;
+  padding-left: 25px;
 }
 /********** GENERAL-INFO SECTION **********/
 #profile-upper-left, #profile-upper-right{
