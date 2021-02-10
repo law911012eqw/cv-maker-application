@@ -1,10 +1,11 @@
 import React from 'react';
-import { Placeholders } from '../Form/attr_helpers';
+import { Placeholders } from '../Form/Placeholders';
 import Input from '../Form/Input_helpers';
 import Textarea from '../Form/Textarea_helpers';
-import { IteratorComponent } from '../Form/iterator'
+import { IteratorComponent, IteratorComponent2 } from '../Form/iterator';
+import { v4 as uuidv4 } from 'uuid';
 
-class Edu extends React.Component {
+class Work extends React.Component {
     constructor(props) {
         super(props);
 
@@ -14,12 +15,16 @@ class Edu extends React.Component {
                 yearEnd1: 'present',
                 companyName1: 'No Name Company From Somewhere',
                 companyPos1: 'Computer Programmer',
-                importantNotes1: ['Enter important finished tasks, achievement and projects that may be beneficial']
+                note: ['Enter important finished tasks, achievement and projects that may be beneficial for your professional credentials','as','d']
             }]
         }
+        //bind methods to this
         this.handleFieldChangeWithObj = this.handleFieldChangeWithObj.bind(this);
         this.addNewStateObj = this.addNewStateObj.bind(this);
+        this.addNewNote = this.addNewNote.bind(this);
         this.rmvLatestStateObj = this.rmvLatestStateObj.bind(this);
+        this.rmvLatestNote = this.rmvLatestNote.bind(this);
+        this.indexIsolator = this.indexIsolator.bind(this);
     }
 
     //A seperate field change handler that updates the state 
@@ -33,13 +38,16 @@ class Edu extends React.Component {
         let stateProp = splitName[1];
         let copyArray = [...this.state.experience]; //a copy of state array
         //update the state inside the array
-        copyArray[index] = {...copyArray[index], [`${stateProp}`]: e.target.value}
+        copyArray[index] = { ...copyArray[index], [`${stateProp}`]: e.target.value }
         //replace the array of objects state with the updated one
         this.setState({
             [`${state}`]: copyArray
         })
+        console.log(stateProp, state);
     }
+    // handleFieldChangeWithArrinArr(e) {
 
+    // }
     //add new state obj
     addNewStateObj(e) {
         e.preventDefault();
@@ -50,23 +58,88 @@ class Edu extends React.Component {
                 [`yearStart${len + 1}`]: '',
                 [`yearEnd${len + 1}`]: '',
                 [`companyName${len + 1}`]: '',
-                [`companyPos${len + 1}`]: '',       
+                [`companyPos${len + 1}`]: '',
+                [`note`]: '',
             }]
         }))
     }
-
+    addNewNote(e) {
+        e.preventDefault();
+        const index = this.indexIsolator(e);
+        const newNote = this.state.experience[index].note.concat('');
+        //const note = [...this.state.experience[index].note];
+        this.setState({
+            ...this.state,
+            experience: [{
+                ...this.state.experience,
+                note: [
+                    ...this.state.experience[index].note,
+                    newNote
+                ]
+            }]
+        });
+        // let copyArray = [...this.state.experience]; //a copy of state array
+        // //update the state inside the array
+        // copyArray[index] = { ...copyArray[index], [`${stateProp}`]: e.target.value }
+        // //replace the array of objects state with the updated one
+        // this.setState({
+        //     [`${state}`]: copyArray
+        // })
+        console.log(this.state.experience[index].note)
+        this.setState(this.state); //forces to rerender the component
+    }
     rmvLatestStateObj(e) {
         e.preventDefault();
         //remove the last item from the array of state objects
         this.state.experience.splice(this.state.experience.length - 1, 1);
         this.setState(this.state) //forces to rerender the component
     }
+    rmvLatestNote(e) {
+        e.preventDefault();
+        const index = this.indexIsolator(e);
+        this.state.experience[index].note.splice(this.state.experience[index].note.length - 1, 1);
+        this.setState(this.state); //forces to rerender the component
+    }
+    indexIsolator(e) {
+        const id = e.target.id;
+        //isolating the index from the id
+        let index = id.split("").filter(function(val){
+            return /^[\d]+$/.test(val);
+        }).join("");
+        return parseInt(index);
+    }
     render() {
+        const { toggleVisibility } = this.props;
+        const iteratorComponent = <IteratorComponent valInfo="work experiences" onAdd={this.addNewStateObj} onRmv={this.rmvLatestStateObj} />
         let experience = this.state.experience;
-        console.log(experience);
         let iterableComponent = experience.map((exp, index) => {
-            const id = index+1;
-            return(
+            const id = index + 1;
+            const notes = exp.note;
+            console.log(notes);
+            const iterableNotes = notes.map((note,i)=>{
+                const idNote = i + 1;
+                console.log(note);
+                //It's either a textarea or a para based on the value of the boolean
+                if(!toggleVisibility) {
+                    return (
+                        <p className="exp-notes-para">
+                            {note}
+                        </p>
+                    );
+                }
+                return (
+                    <Textarea
+                        t="Text"
+                        id={`exp${id}-task${idNote}`}
+                        cn="exp-notes-ta"
+                        name={`exp[${index}].note${index}[${i}]`}
+                        val={note}
+                        ph={Placeholders.experiences[0].achievements}
+                        onChange={this.handleFieldChangeWithObj}
+                    />
+                );
+            });
+            return (
                 <div key={id} id={`exp-info${id}`} className="exp-info">
                     <div id={`exp-dates${id}`} className="exp-dates">
                         <Input
@@ -93,7 +166,7 @@ class Edu extends React.Component {
                         t="Text"
                         id={`exp-name${id}`}
                         cn="exp-name"
-                        name={`experience[${index}].yearEnd${id}`}
+                        name={`experience[${index}].companyName${id}`}
                         val={exp.[`companyName${id}`]}
                         ph={Placeholders.experiences[0].name}
                         onChange={this.handleFieldChangeWithObj}
@@ -107,25 +180,21 @@ class Edu extends React.Component {
                         ph={Placeholders.experiences[0].position}
                         onChange={this.handleFieldChangeWithObj}
                     />
-                    <Textarea
-                        t="Text"
-                        id={`exp-task${this.state.num}`}
-                        cn="exp-important-notes" name=""
-                        ph={Placeholders.experiences[0].achievements}
-                        onChange={this.handleFieldChangeWithObjWithObj}
-                    />
-                    <IteratorComponent valInfo="work experiences" onAdd={this.addNewStateObj} onRmv={this.rmvLatestStateObj}/>
+                    {iterableNotes}
+                    {toggleVisibility ? 
+                    <IteratorComponent2 id={`noteManagement${index}`} valInfo="notes" onAdd={this.addNewNote} onRmv={this.rmvLatestNote}/> 
+                    : null}
                 </div>
             );
         })
         return (
             <div id="exp-container" className="main-containers">
-                <p>Work Experiences</p>
+                <p class="exp-header-texts">Work Experiences</p>
                 {iterableComponent}
-                <IteratorComponent valInfo="work experiences" onAdd={this.addNewStateObj} onRmv={this.rmvLatestStateObj}/>
+                {toggleVisibility ? iteratorComponent : null}
             </div>
         );
     }
 }
 
-export default Edu;
+export default Work;

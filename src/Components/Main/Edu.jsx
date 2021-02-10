@@ -1,5 +1,5 @@
 import React from 'react';
-import { Placeholders } from '../Form/attr_helpers';
+import { Placeholders } from '../Form/Placeholders';
 import Input from '../Form/Input_helpers';
 import { IteratorComponent } from '../Form/iterator'
 
@@ -33,7 +33,6 @@ class Edu extends React.Component {
         let copyArray = [...this.state.education]; //a copy of state array
         //update the state inside the array
         copyArray[index] = {...copyArray[index], [`${stateProp}`]: e.target.value}
-        console.log(stateProp);
         //replace the array of objects state with the updated one
         this.setState({
             [`${state}`]: copyArray
@@ -63,8 +62,9 @@ class Edu extends React.Component {
     }
 
     render() {
+        const { toggleVisibility } = this.props;
         const education = this.state.education;
-        console.log(education);
+        const iteratorComponent = <IteratorComponent valInfo="Education" onAdd={this.addNewStateObj} onRmv={this.rmvLatestStateObj}/>;
         let iterableComponent = education.map((edu, index) => {
             let id = index+1;
             return (
@@ -84,7 +84,7 @@ class Edu extends React.Component {
                             t="Text"
                             id={`edu-end-year${id}`}
                             cn="exp-end-year"
-                            name={`education[${index}].yearStart${id}`}
+                            name={`education[${index}].yearEnd${id}`}
                             val={edu.[`yearEnd${id}`]}
                             ph={Placeholders.education[0].yearEnd}
                             onChange={this.handleFieldChangeWithObj}
@@ -114,9 +114,10 @@ class Edu extends React.Component {
         })
         return (
             <div id={`edu-container`} className="main-containers" >
-                <p>Education</p>
+                <p class="exp-header-texts">Education</p>
                 {iterableComponent}
-                <IteratorComponent valInfo="Education" onAdd={this.addNewStateObj} onRmv={this.rmvLatestStateObj}/>
+                {/* add and remove iterable component */}
+                {toggleVisibility ? iteratorComponent : null} 
             </div >
         );
     }

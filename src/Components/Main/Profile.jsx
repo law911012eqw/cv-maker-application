@@ -1,12 +1,9 @@
 import React from 'react';
 
 //Components
-import { Placeholders } from '../Form/attr_helpers';
+import { Placeholders } from '../Form/Placeholders';
 import Input from '../Form/Input_helpers';
 import Textarea from '../Form/Textarea_helpers';
-
-//Extra Packages
-//import autosize from 'autosize';
 
 class Profile extends React.Component {
     constructor(props) {
@@ -111,7 +108,7 @@ class Profile extends React.Component {
                     <Input
                         t="text"
                         id="profile-phone"
-                        cn="cv-input"
+                        cn="ci-inputs"
                         name="phone"
                         val={this.state.phone}
                         ph={Placeholders.phone}
@@ -120,7 +117,7 @@ class Profile extends React.Component {
                     <Input
                         t="email"
                         id="profile-email"
-                        cn="cv-input"
+                        cn="ci-inputs"
                         name="email"
                         val={this.state.email}
                         ph={Placeholders.email}
@@ -129,7 +126,7 @@ class Profile extends React.Component {
                     <Textarea
                         t="text"
                         id="profile-address"
-                        cn="cv-input"
+                        cn="ci-inputs"
                         name="location.address"
                         val={this.state.location.address}
                         ph={`${Placeholders.location[0].address}`}
@@ -138,7 +135,7 @@ class Profile extends React.Component {
                     <Textarea
                         t="text"
                         id="profile-location"
-                        cn="cv-input"
+                        cn="ci-inputs"
                         name="location"
                         val={`${this.state.location.city},${this.state.location.state},${this.state.location.zip}`}
                         ph={`${Placeholders.location[0].city}${Placeholders.location[0].state}${Placeholders.location[0].zip}`}
