@@ -26,4 +26,9 @@ export const Placeholders = {
         position: 'Your job position',
         achievements: '[Insert text here]',
     }],
+    certificates: {
+        date: '[Insert date]',
+        name: '[Insert your certification here]'
+    },
+    interests: ['[Insert your interests here]']
 }
