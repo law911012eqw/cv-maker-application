@@ -8,6 +8,7 @@ body {
   /* background-color: rgba(45,87,56, 0.2); */
   background-image: linear-gradient(45deg, #c8c9c5 45%, #cdd6ca 45%, #c6ccc5 50%, #c5c7c1 50%, #d0d3ca 95%, #c6ccc4 95%, #e2e6e0 100%);
   background-size: 14.14px 14.14px;
+  overflow-x: hidden;
 }
 input, textarea{
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

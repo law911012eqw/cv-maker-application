@@ -1,0 +1,9 @@
+$font-path: "../Fonts";
+@font-face{
+    src: url('#{$font-path}/Precious.ttf');
+    font-family: 'Precious';
+}
+@font-face{
+    src: url('#{$font-path}/Cadency.ttf');
+    font-family: 'Cadency';
+}
