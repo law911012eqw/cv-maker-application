@@ -59,7 +59,7 @@ class Interests extends React.Component {
             const id = i + 1;
             if(!toggleVisibility){
                 return(
-                    <p class="interest-para">{interest.interest}</p>
+                    <p key={0 - id} class="interest-para">{interest.interest}</p>
                 );
             } else {
 
@@ -80,7 +80,7 @@ class Interests extends React.Component {
         })
         return (
             <div id={`interests-container`} className="main-containers" >
-                <p class="exp-header-texts">Interests</p>
+                <p className="exp-header-texts">Interests</p>
                 {iterableComponent}
 
                 {/* add and remove iterable component */}

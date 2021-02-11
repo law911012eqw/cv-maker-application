@@ -59,7 +59,6 @@ class Certificates extends React.Component {
         const iterableComponent = certificates.map((c, i) => {
             this.props.componentDidMount();
             const id = i + 1;
-            console.log(c);
             return (
                 <div key={id} id={`certificate-info${id}`}>
                     <Input
@@ -85,7 +84,7 @@ class Certificates extends React.Component {
         })
         return (
             <div id={`certificates-container`} className="main-containers" >
-                <p class="exp-header-texts">Certificates</p>
+                <p className="exp-header-texts">Certificates</p>
                 {iterableComponent}
 
                 {/* add and remove iterable component */}

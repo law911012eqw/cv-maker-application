@@ -7,5 +7,5 @@ A sample snapshot:
 
 #### To be fixed
 * [ ] A state array within an array of objects iteration 
-* [ ] Language functionality
+* [X] Language functionality
 * [ ] Button icon slide in not showing

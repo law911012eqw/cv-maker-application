@@ -114,7 +114,7 @@ class Edu extends React.Component {
         })
         return (
             <div id={`edu-container`} className="main-containers" >
-                <p class="exp-header-texts">Education</p>
+                <p className="exp-header-texts">Education</p>
                 {iterableComponent}
                 {/* add and remove iterable component */}
                 {toggleVisibility ? iteratorComponent : null} 

@@ -38,7 +38,23 @@ export const IteratorSkills = (props) => {
     return (
         <form className="skill-addition-wrapper">
             <Input t="text" val={val} id="skill-text-input" />
-            <Input t="submit" val="+" id="skill-appender" onSubmit={onSubmit}/>
+            <Input t="submit" val="+" cn="skill-appender" onSubmit={onSubmit} />
+        </form>
+    )
+}
+export const IteratorLangs = (props) => {
+    const { val, onSubmit } = props;
+    return (
+        <form className="skill-addition-wrapper">
+            <Input t="text" val={val} id="lang-text-input" />
+            <select id="lang-lvl-options">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option selected value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <Input t="submit" val="+" cn="skill-appender" onSubmit={onSubmit} />
         </form>
     )
 }

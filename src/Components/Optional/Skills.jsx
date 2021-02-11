@@ -22,7 +22,6 @@ class Skills extends React.Component {
         let val = document.getElementById('skill-text-input').value;
         val   = Object.assign({}, {skill: val});
         const updateSkills = this.state.skills.concat(val);
-        console.log(updateSkills);
         this.setState({
             skills: updateSkills
         })
@@ -46,9 +45,8 @@ class Skills extends React.Component {
         const skills = this.state.skills;
         const iteratorSkills = <IteratorSkills onSubmit={this.addSkill}/>
         const iterableComponent = skills.map((s, index) => {
-            console.log(skills);
             return (
-                <div className="skill-wrapper">
+                <div key={index} className="skill-wrapper">
                     <p className="skill-name">{s.skill}</p>
                     <button id={`round-btn${index}`} className="round-btn" onClick={this.rmvSkill}>-</button>
                 </div>

@@ -95,7 +95,6 @@ class Work extends React.Component {
         e.preventDefault();
         const index = this.indexIsolator(e);
         const newNote = this.state.experience[index].notes.concat('');
-        const newdasd = '';
         // this.setState({
         //     ...this.state,
         //     experience: [{
@@ -107,10 +106,9 @@ class Work extends React.Component {
         //     }]
         // });
         this.setState({
-            notes: [...this.state.experience[index].notes, newdasd]
+            notes: [...this.state.experience[index].notes, newNote]
         })
         console.log(this.state.experience[index].notes)
-        this.setState(this.state); //forces to rerender the component
     }
     rmvLatestStateObj(e) {
         e.preventDefault();
@@ -147,7 +145,7 @@ class Work extends React.Component {
                 //It's either a textarea or a para based on the value of the boolean
                 if(!toggleVisibility) {
                     return (
-                        <p className="exp-notes-para">
+                        <p key={0 - idNote} className="exp-notes-para">
                             {note}
                         </p>
                     );
@@ -214,7 +212,7 @@ class Work extends React.Component {
         })
         return (
             <div id="exp-container" className="main-containers">
-                <p class="exp-header-texts">Work Experiences</p>
+                <p className="exp-header-texts">Work Experiences</p>
                 {iterableComponent}
                 {toggleVisibility ? iteratorComponent : null}
             </div>

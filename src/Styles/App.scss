@@ -257,7 +257,6 @@ input[ type=date ] { margin: 1px 6px; }
 }
 
 /********** SKILLS SECTION **********/
-
 .skill-headers{
   font-family: 'Precious';
   margin-left: -20px;
@@ -312,33 +311,63 @@ input[ type=date ] { margin: 1px 6px; }
     font-size: 0.7em;
     width: 160px;
   }
-  #skill-appender{
+  .skill-appender{
     background: rgb(80, 220, 80);
     color: white;
   }
-  #skill-appender:hover{
+  .skill-appender:hover{
     background: rgb(122, 241, 122);
   }
 }
 /**********LANGUAGES SECTION *************/
+#lang-text-input{
+  font-size: 0.7em;
+  width: 120px;
+}
+#lang-lvl-options{
+  font-size: 0.7em;
+}
 .lang-name{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.lang{
   font-size: 0.8em;
 }
 span {
   font-size: 0.5em;
   color:rgb(136, 131, 131);
 }
+.lang-name:hover{
+  cursor: pointer;
+  box-shadow: inset 0 0 100px 100px rgba(165, 165, 165, 0.1);
+  button{
+    visibility: visible;
+    transition: visibility 2s ease-in;
+  }
+}
 .parallelogram-bar { 
+  display: flex;
   width: 100px; 
   height: 25px; 
   -webkit-transform: skew(30deg); 
   -moz-transform: skew(30deg); 
   transform: skew(30deg);
-  background: #000;
+  border-right: 1px solid rgba(255,255,255,0.8);
   margin: 20px;
 }
+.parallelogram-shape { 
+  width: 20px; 
+  height: 23px; 
+  -webkit-transform: skew(0deg); 
+  -moz-transform: skew(0deg); 
+  transform: skew(0deg);
+  background: rgb(53, 187, 240);
+  border-right: 1px solid rgba(255,255,255,0.8);
+}
 /**********CERTIFICATION SECTION *************/
-#certificates-container > div{
+#certificates-container div{
   display: flex;
   flex-direction: row;
   margin-left: 60px;
@@ -346,7 +375,10 @@ span {
 #certificates-container input, #certificates-container textarea {
   font-size: 0.6em;
 }
-#certificates-container input{ vertical-align: text-top; }
+#certificates-container input{ 
+  align-self: flex-start;
+
+}
 #certificates-container textarea{ min-width: 500px; }
 
 /**********INTERESTS SECTION *************/
@@ -416,4 +448,7 @@ input[ type=checkbox ]{
 }
 
 /********ICONS********/
-
+.bi {
+  width: 30px;
+  height: 30px;
+}
