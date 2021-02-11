@@ -8,9 +8,8 @@ import Textarea from '../Form/Textarea_helpers';
 class Profile extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = ({
-            name: 'Beaver Bryan Antipolo',
+            name: 'Reaver Nayrb Saboteur',
             title: 'Web Developer',
             email: 'law911012eqw@gmail.com',
             profile: `The purpose of this text is to confirm  whether the auto resize textarea 

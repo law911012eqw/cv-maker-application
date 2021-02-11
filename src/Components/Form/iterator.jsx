@@ -1,4 +1,5 @@
 import React from 'react';
+import Input from '../Form/Input_helpers';
 
 export const IteratorComponent = (props) => {
     const { id, valInfo, onAdd, onRmv } = props;
@@ -30,4 +31,14 @@ export const IteratorComponent2 = (props) => {
             </div>
         </div>
     );
+}
+
+export const IteratorSkills = (props) => {
+    const { val, onSubmit } = props;
+    return (
+        <form className="skill-addition-wrapper">
+            <Input t="text" val={val} id="skill-text-input" />
+            <Input t="submit" val="+" id="skill-appender" onSubmit={onSubmit}/>
+        </form>
+    )
 }

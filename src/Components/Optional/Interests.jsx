@@ -9,7 +9,7 @@ class Interests extends React.Component {
         //default values to use
         this.state = {
             interests: [{
-                interest: '[Insert your interests here e.g. Music, Psychology, Philosophy, etc.]'
+                interest: '[Insert your interests here e.g. Music, Video games, Coding, Philosopical discussions,  etc.]'
             }]
         }
         this.handleFieldChangeWithObj = this.handleFieldChangeWithObj.bind(this);
@@ -20,7 +20,7 @@ class Interests extends React.Component {
     //with array of obj property after onChange event
     handleFieldChangeWithObj(e) {
         let name = e.target.name;
-        const arr = name.split(/[.\[\]]/);
+        const arr = name.split(/[.[\]]/);
         const splitName = name.split('.');
         let index = arr[1];
         let state = arr[0];
@@ -28,7 +28,6 @@ class Interests extends React.Component {
         let copyArray = [...this.state.interests]; //a copy of state array
         //update the state inside the array
         copyArray[index] = { ...copyArray[index], [`${stateProp}`]: e.target.value }
-        console.log(stateProp);
         //replace the array of objects state with the updated one
         this.setState({
             [`${state}`]: copyArray
@@ -54,7 +53,6 @@ class Interests extends React.Component {
     render() {
         const { toggleVisibility } = this.props;
         const interests = this.state.interests;
-        console.log(interests);
         const iteratorComponent = <IteratorComponent valInfo="interests" onAdd={this.addNewStateObj} onRmv={this.rmvLatestStateObj} />
         const iterableComponent = interests.map((interest, i) => {
             this.props.componentDidMount();

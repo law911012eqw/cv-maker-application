@@ -25,7 +25,7 @@ class Edu extends React.Component {
     //with array of obj property after onChange event
     handleFieldChangeWithObj(e) {
         let name = e.target.name;
-        const arr = name.split(/[.\[\]]/);
+        const arr = name.split(/[.[\]]/);
         const splitName = name.split('.');
         let index = arr[1];
         let state = arr[0];

@@ -22,6 +22,7 @@ class Options extends React.Component {
         if (document.getElementById("tgl-input-interests").checked === false) {
             document.getElementById("interests-container").style.display = "none";
         } else { document.getElementById("interests-container").style.display = "block"; }
+        
     }
     handleCheckbox(event) {
         const target = event.target;
@@ -43,7 +44,7 @@ class Options extends React.Component {
     render() {
         return (
             <div id="options-container" className="move-to-right">
-                <button id="toggle-sidebar" onClick={this.toggleSidebarVisibility}>
+                <button id="toggle-sidebar" className="rotate-button" onClick={this.toggleSidebarVisibility}>
                     <i class="bi bi-arrow-left-square-fill"></i>
                 </button>
                 <form id="sidebar-options">

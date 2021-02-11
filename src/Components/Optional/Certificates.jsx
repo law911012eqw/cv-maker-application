@@ -11,30 +11,17 @@ class Certificates extends React.Component {
         this.state = {
             certificates: [{
                 date: '2017-19',
-                name: ''
+                name: '[Enter your certifications in this textarea along with the following date to the side]'
             }]
         }
         this.handleFieldChangeWithObj = this.handleFieldChangeWithObj.bind(this);
         this.addNewStateObj = this.addNewStateObj.bind(this);
         this.rmvLatestStateObj = this.rmvLatestStateObj.bind(this);
     }
-    // componentDidMount() {
-    //     const tx = document.getElementsByTagName('textarea');
-    //     for (let i = 0; i < tx.length; i++) {
-    //       tx[i].setAttribute('style', 'height:' + (tx[i].scrollHeight) + 'px;overflow-y:hidden;');
-    //       tx[i].addEventListener("input", OnInput, false);
-    //     }
-    
-    //     function OnInput() {
-    //       this.style.height = 'auto';
-    //       this.style.height = (this.scrollHeight) + 'px';
-    //     }
-    //   }
-    //A seperate field change handler that updates the state 
-    //with array of obj property after onChange event
+
     handleFieldChangeWithObj(e) {
         let name = e.target.name;
-        const arr = name.split(/[.\[\]]/);
+        const arr = name.split(/[.[\]]/);
         const splitName = name.split('.');
         let index = arr[1];
         let state = arr[0];
@@ -42,8 +29,6 @@ class Certificates extends React.Component {
         let copyArray = [...this.state.certificates]; //a copy of state array
         //update the state inside the array
         copyArray[index] = { ...copyArray[index], [`${stateProp}`]: e.target.value }
-        console.log(stateProp);
-        console.log(state);
         //replace the array of objects state with the updated one
         this.setState({
             [`${state}`]: copyArray
@@ -70,7 +55,6 @@ class Certificates extends React.Component {
     render() {
         const { toggleVisibility } = this.props;
         const certificates = this.state.certificates;
-        console.log(certificates);
         const iteratorComponent = <IteratorComponent valInfo="work experiences" onAdd={this.addNewStateObj} onRmv={this.rmvLatestStateObj} />
         const iterableComponent = certificates.map((c, i) => {
             this.props.componentDidMount();

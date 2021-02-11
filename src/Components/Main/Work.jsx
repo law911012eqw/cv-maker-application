@@ -15,11 +15,12 @@ class Work extends React.Component {
                 yearEnd1: 'present',
                 companyName1: 'No Name Company From Somewhere',
                 companyPos1: 'Computer Programmer',
-                note: ['Enter important finished tasks, achievement and projects that may be beneficial for your professional credentials','as','d']
+                notes: ['Enter important finished tasks, achievement and projects that may be beneficial for your professional credentials','as','d']
             }]
         }
         //bind methods to this
         this.handleFieldChangeWithObj = this.handleFieldChangeWithObj.bind(this);
+        this.handleFieldChangeWithArrinArr = this.handleFieldChangeWithArrinArr.bind(this);
         this.addNewStateObj = this.addNewStateObj.bind(this);
         this.addNewNote = this.addNewNote.bind(this);
         this.rmvLatestStateObj = this.rmvLatestStateObj.bind(this);
@@ -31,7 +32,7 @@ class Work extends React.Component {
     //with array of obj property after onChange event
     handleFieldChangeWithObj(e) {
         let name = e.target.name;
-        const arr = name.split(/[.\[\]]/);
+        const arr = name.split(/[.[\]]/);
         let splitName = name.split('.');
         let index = arr[1];
         let state = arr[0];
@@ -43,11 +44,38 @@ class Work extends React.Component {
         this.setState({
             [`${state}`]: copyArray
         })
-        console.log(stateProp, state);
     }
-    // handleFieldChangeWithArrinArr(e) {
-
-    // }
+    handleFieldChangeWithArrinArr(e) {
+        const name = e.target.name;
+        const value = e.target.value;
+        let arr = name.split(/[.[\]]/);
+        arr = arr.filter (x => x !== ""); //clearing whitespaces
+        const index = arr[1]; //index of the first array
+        const stateInArr = arr[2];
+        const arrIndex = arr[3]; //index of arr inside state arr
+        const state = arr[0]; //state name of the first arr
+        const stateProp = `${stateInArr}[${arrIndex}]`;
+        const copyArray = [...this.state.experience[index].notes];
+        //copyArray[arrIndex] = e.target.value;
+        // this.setState({
+        //     ...this.state,
+        //     experience: [{
+        //         ...this.state.experience[index],
+        //         notes: [
+        //             ...this.state.experience[index].notes, 
+        //             e.target.value
+        //         ],
+        //     }]
+        // });
+        copyArray[arrIndex] = value;
+        this.setState({
+            experience: [{
+                ...this.state.experience[index].notes, 
+                copyArray
+            }]
+        })
+        console.log(copyArray);
+    }
     //add new state obj
     addNewStateObj(e) {
         e.preventDefault();
@@ -59,33 +87,29 @@ class Work extends React.Component {
                 [`yearEnd${len + 1}`]: '',
                 [`companyName${len + 1}`]: '',
                 [`companyPos${len + 1}`]: '',
-                [`note`]: '',
+                [`notes`]: [''],
             }]
         }))
     }
     addNewNote(e) {
         e.preventDefault();
         const index = this.indexIsolator(e);
-        const newNote = this.state.experience[index].note.concat('');
-        //const note = [...this.state.experience[index].note];
-        this.setState({
-            ...this.state,
-            experience: [{
-                ...this.state.experience,
-                note: [
-                    ...this.state.experience[index].note,
-                    newNote
-                ]
-            }]
-        });
-        // let copyArray = [...this.state.experience]; //a copy of state array
-        // //update the state inside the array
-        // copyArray[index] = { ...copyArray[index], [`${stateProp}`]: e.target.value }
-        // //replace the array of objects state with the updated one
+        const newNote = this.state.experience[index].notes.concat('');
+        const newdasd = '';
         // this.setState({
-        //     [`${state}`]: copyArray
-        // })
-        console.log(this.state.experience[index].note)
+        //     ...this.state,
+        //     experience: [{
+        //         ...this.state.experience[index],
+        //         notes: [
+        //             ...this.state.experience[index].notes,
+        //             newdasd
+        //         ]
+        //     }]
+        // });
+        this.setState({
+            notes: [...this.state.experience[index].notes, newdasd]
+        })
+        console.log(this.state.experience[index].notes)
         this.setState(this.state); //forces to rerender the component
     }
     rmvLatestStateObj(e) {
@@ -97,7 +121,7 @@ class Work extends React.Component {
     rmvLatestNote(e) {
         e.preventDefault();
         const index = this.indexIsolator(e);
-        this.state.experience[index].note.splice(this.state.experience[index].note.length - 1, 1);
+        this.state.experience[index].notes.splice(this.state.experience[index].notes.length - 1, 1);
         this.setState(this.state); //forces to rerender the component
     }
     indexIsolator(e) {
@@ -112,9 +136,10 @@ class Work extends React.Component {
         const { toggleVisibility } = this.props;
         const iteratorComponent = <IteratorComponent valInfo="work experiences" onAdd={this.addNewStateObj} onRmv={this.rmvLatestStateObj} />
         let experience = this.state.experience;
-        let iterableComponent = experience.map((exp, index) => {
+        const iterableComponent = experience.map((exp, index) => {
+            this.props.componentDidMount();
             const id = index + 1;
-            const notes = exp.note;
+            const notes = exp.notes;
             console.log(notes);
             const iterableNotes = notes.map((note,i)=>{
                 const idNote = i + 1;
@@ -132,10 +157,10 @@ class Work extends React.Component {
                         t="Text"
                         id={`exp${id}-task${idNote}`}
                         cn="exp-notes-ta"
-                        name={`exp[${index}].note${index}[${i}]`}
+                        name={`experience[${index}].notes[${i}]`}
                         val={note}
                         ph={Placeholders.experiences[0].achievements}
-                        onChange={this.handleFieldChangeWithObj}
+                        onChange={this.handleFieldChangeWithArrinArr}
                     />
                 );
             });
