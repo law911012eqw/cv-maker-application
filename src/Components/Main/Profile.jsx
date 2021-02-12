@@ -111,9 +111,9 @@ class Profile extends React.Component {
                         name="phone"
                         val={this.state.phone}
                         ph={Placeholders.phone}
-                        onChange={this.handleFieldChangeWithManualApproach}
+                        onChange={this.handleFieldChange}
                     />
-                    <Input
+                    <Textarea
                         t="email"
                         id="profile-email"
                         cn="ci-inputs"
