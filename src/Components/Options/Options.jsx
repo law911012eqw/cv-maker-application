@@ -45,7 +45,7 @@ class Options extends React.Component {
         return (
             <div id="options-container" className="move-to-right">
                 <button id="toggle-sidebar" className="rotate-button" onClick={this.toggleSidebarVisibility}>
-                    <i className="bi bi-arrow-left-square-fill"></i>
+                    <i className="fas fa-caret-square-left"></i>
                 </button>
                 <form id="sidebar-options">
                             <h2 id="toggle-options-text-wrapper">
