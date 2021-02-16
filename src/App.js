@@ -23,9 +23,8 @@ const App = () => {
 
     const toggleSave = document.getElementById('toggle-save');
 
-    function toggleDisable(e){
+    function toggleDisable(e) {
       e.preventDefault();
-      console.log('asda');
       setIsDisabled(!isDisabled);
     }
 
@@ -39,24 +38,32 @@ const App = () => {
 
   //side effects of the former --alternately toggling text on updates
   useEffect(() => {
-    console.log('asdaasd');
     isDisabled === true ? setButtonText('Edit') : setButtonText('Save');
   }, [isDisabled])
 
-  const textareaRef = useRef(null);
-  const [txHeight, setTxHeight] = useState('auto');
+  const isInitialMount = useRef(true);
   useEffect(() => {
-        const tx = document.getElementsByTagName('textarea');
-    for (let i = 0; i < tx.length; i++) {
-      tx[i].setAttribute('style', 'height:' + (tx[i].scrollHeight) + 'px;overflow-y:hidden;');
-      tx[i].addEventListener("input", OnInput, false);
+    //load this useEffect at DOM mount and dom update
+    if (isInitialMount.current) {
+      autoresizeTextarea();
+      isInitialMount.current = false;
+    } else {
+      autoresizeTextarea();
+    }
+
+    function autoresizeTextarea() {
+      const tx = document.getElementsByTagName('textarea');
+      for (let i = 0; i < tx.length; i++) {
+        tx[i].setAttribute('style', 'height:' + (tx[i].scrollHeight) + 'px;overflow-y:hidden;');
+        tx[i].addEventListener("input", OnInput, false);
+      }
     }
 
     function OnInput() {
       this.style.height = 'auto';
       this.style.height = (this.scrollHeight) + 'px';
     }
-  }, [txHeight])
+  })
   return (
     <div>
       <form id="main-form" autoComplete="off">
@@ -68,7 +75,7 @@ const App = () => {
               <Edu toggleVisibility={!isDisabled} />
               <Work toggleVisibility={!isDisabled} />
               <Certificates toggleVisibility={!isDisabled} />
-              <Interests toggleVisibility={!isDisabled}  />
+              <Interests toggleVisibility={!isDisabled} />
             </div>
             <div id="skills-section">
               <Skills label="Skills" toggleVisibility={!isDisabled} />
@@ -78,9 +85,7 @@ const App = () => {
         </fieldset>
         <div id="buttons-section">
           <Input t="submit" id="toggle-save" val={buttonText} />
-          {/* <button id="print-btn" onClick={this.printCV}>Print</button> */}
         </div>
-
       </form>
       <Options />
     </div>

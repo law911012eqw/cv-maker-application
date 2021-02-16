@@ -15,7 +15,7 @@ class Work extends React.Component {
                 yearEnd1: 'present',
                 companyName1: 'No Name Company From Somewhere',
                 companyPos1: 'Computer Programmer',
-                notes: ['Enter important finished tasks, achievement and projects that may be beneficial for your professional credentials','as','d']
+                notes: ['Enter important finished tasks, achievement and projects that may be beneficial for your professional credentials']
             }]
         }
         //bind methods to this
@@ -49,22 +49,23 @@ class Work extends React.Component {
         const name = e.target.name;
         const value = e.target.value;
         let arr = name.split(/[.[\]]/);
-        arr = arr.filter (x => x !== ""); //clearing whitespaces
+        arr = arr.filter(x => x !== ""); //clearing whitespaces
         const index = arr[1]; //index of the first array
         const stateInArr = arr[2];
         const arrIndex = arr[3]; //index of arr inside state arr
         const state = arr[0]; //state name of the first arr
-        const stateProp = `${stateInArr}[${arrIndex}]`;
         //copy of the existing notes
-        const copyArray = [...this.state.experience[index].notes];
+        let copyArray = [...this.state.experience[index].notes];
 
         copyArray[arrIndex] = value;
-        this.setState({
+        this.setState(prevState => ({
+            ...prevState,
             [state]: [{
-                ...this.state.experience[index].[state], 
+                ...prevState.experience[index],
                 [stateInArr]: copyArray //overwrite the current notes with the updated version
             }]
-        })
+        }))
+        console.log(index);
     }
     //add new state obj
     addNewStateObj(e) {
@@ -85,12 +86,12 @@ class Work extends React.Component {
         e.preventDefault();
         const index = this.indexIsolator(e);
         const newNote = this.state.experience[index].notes.concat('');
-        this.setState({
+        this.setState(prevState => ({
             experience: [{
-                ...this.state.experience[index].notes, 
+                ...prevState.experience[index],
                 notes: newNote //add an additional element
             }]
-        })
+        }))
     }
     rmvLatestStateObj(e) {
         e.preventDefault();
@@ -107,7 +108,7 @@ class Work extends React.Component {
     indexIsolator(e) {
         const id = e.target.id;
         //isolating the index from the id
-        let index = id.split("").filter(function(val){
+        let index = id.split("").filter(function (val) {
             return /^[\d]+$/.test(val);
         }).join("");
         return parseInt(index);
@@ -116,13 +117,14 @@ class Work extends React.Component {
         const { toggleVisibility } = this.props;
         const iteratorComponent = <IteratorComponent valInfo="work experiences" onAdd={this.addNewStateObj} onRmv={this.rmvLatestStateObj} />
         let experience = this.state.experience;
+        console.log(experience);
         const iterableComponent = experience.map((exp, index) => {
             const id = index + 1;
             const notes = exp.notes;
-            const iterableNotes = notes.map((note,i)=>{
+            const iterableNotes = notes.map((note, i) => {
                 const idNote = i + 1;
                 //It's either a textarea or a para based on the value of the boolean
-                if(!toggleVisibility) {
+                if (!toggleVisibility) {
                     return (
                         <p key={0 - idNote} className="exp-notes-para">
                             {note}
@@ -183,9 +185,9 @@ class Work extends React.Component {
                         onChange={this.handleFieldChangeWithObj}
                     />
                     {iterableNotes}
-                    {toggleVisibility ? 
-                    <IteratorComponent2 id={`noteManagement${index}`} valInfo="notes" onAdd={this.addNewNote} onRmv={this.rmvLatestNote}/> 
-                    : null}
+                    {toggleVisibility ?
+                        <IteratorComponent2 id={`noteManagement${index}`} valInfo="notes" onAdd={this.addNewNote} onRmv={this.rmvLatestNote} />
+                        : null}
                 </div>
             );
         })
