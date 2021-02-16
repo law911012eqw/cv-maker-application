@@ -66,8 +66,6 @@ class Profile extends React.Component {
         }
     }
     render() {
-        console.log(this.props.ref);
-        console.log(this.props.height);
         return (
             <div id="profile-container">
                 <div id="profile-upper-left">

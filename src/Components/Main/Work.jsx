@@ -60,12 +60,11 @@ class Work extends React.Component {
 
         copyArray[arrIndex] = value;
         this.setState({
-            experience: [{
-                ...this.state.experience[index].notes, 
-                notes: copyArray //overwrite the current notes with the updated version
+            [state]: [{
+                ...this.state.experience[index].[state], 
+                [stateInArr]: copyArray //overwrite the current notes with the updated version
             }]
         })
-        console.log(copyArray);
     }
     //add new state obj
     addNewStateObj(e) {
@@ -86,21 +85,12 @@ class Work extends React.Component {
         e.preventDefault();
         const index = this.indexIsolator(e);
         const newNote = this.state.experience[index].notes.concat('');
-        console.log(this.state.experience[index].notes)
-        // this.setState({
-        //     ...this.state,
-        //     experience: [{
-        //         ...this.state.experience[index],
-        //         notes: [
-        //             ...this.state.experience[index].notes,
-        //             newdasd
-        //         ]
-        //     }]
-        // });
         this.setState({
-            notes: newNote
+            experience: [{
+                ...this.state.experience[index].notes, 
+                notes: newNote //add an additional element
+            }]
         })
-        console.log(this.state.experience[index].notes)
     }
     rmvLatestStateObj(e) {
         e.preventDefault();
@@ -129,10 +119,8 @@ class Work extends React.Component {
         const iterableComponent = experience.map((exp, index) => {
             const id = index + 1;
             const notes = exp.notes;
-            console.log(notes);
             const iterableNotes = notes.map((note,i)=>{
                 const idNote = i + 1;
-                console.log(note);
                 //It's either a textarea or a para based on the value of the boolean
                 if(!toggleVisibility) {
                     return (
