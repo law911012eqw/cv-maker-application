@@ -55,23 +55,14 @@ class Work extends React.Component {
         const arrIndex = arr[3]; //index of arr inside state arr
         const state = arr[0]; //state name of the first arr
         const stateProp = `${stateInArr}[${arrIndex}]`;
+        //copy of the existing notes
         const copyArray = [...this.state.experience[index].notes];
-        //copyArray[arrIndex] = e.target.value;
-        // this.setState({
-        //     ...this.state,
-        //     experience: [{
-        //         ...this.state.experience[index],
-        //         notes: [
-        //             ...this.state.experience[index].notes, 
-        //             e.target.value
-        //         ],
-        //     }]
-        // });
+
         copyArray[arrIndex] = value;
         this.setState({
             experience: [{
                 ...this.state.experience[index].notes, 
-                copyArray
+                notes: copyArray //overwrite the current notes with the updated version
             }]
         })
         console.log(copyArray);
@@ -95,6 +86,7 @@ class Work extends React.Component {
         e.preventDefault();
         const index = this.indexIsolator(e);
         const newNote = this.state.experience[index].notes.concat('');
+        console.log(this.state.experience[index].notes)
         // this.setState({
         //     ...this.state,
         //     experience: [{
@@ -106,7 +98,7 @@ class Work extends React.Component {
         //     }]
         // });
         this.setState({
-            notes: [...this.state.experience[index].notes, newNote]
+            notes: newNote
         })
         console.log(this.state.experience[index].notes)
     }
@@ -135,7 +127,6 @@ class Work extends React.Component {
         const iteratorComponent = <IteratorComponent valInfo="work experiences" onAdd={this.addNewStateObj} onRmv={this.rmvLatestStateObj} />
         let experience = this.state.experience;
         const iterableComponent = experience.map((exp, index) => {
-            this.props.componentDidMount();
             const id = index + 1;
             const notes = exp.notes;
             console.log(notes);

@@ -66,6 +66,8 @@ class Profile extends React.Component {
         }
     }
     render() {
+        console.log(this.props.ref);
+        console.log(this.props.height);
         return (
             <div id="profile-container">
                 <div id="profile-upper-left">
@@ -91,7 +93,7 @@ class Profile extends React.Component {
                     </div>
                     <div>
                         <Textarea
-                            // ref={c=>this.textarea=c}
+                            ref={this.props.ref}
                             t="text"
                             id="profile-summary"
                             cn="cv-input"
@@ -99,6 +101,9 @@ class Profile extends React.Component {
                             val={this.state.profile}
                             ph={Placeholders.profile}
                             onChange={this.handleFieldChange}
+                            // s={{
+                            //     height {this.props.height}
+                            // }}
                         />
                     </div>
                 </div>

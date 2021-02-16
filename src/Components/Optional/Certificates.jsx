@@ -57,7 +57,7 @@ class Certificates extends React.Component {
         const certificates = this.state.certificates;
         const iteratorComponent = <IteratorComponent valInfo="work experiences" onAdd={this.addNewStateObj} onRmv={this.rmvLatestStateObj} />
         const iterableComponent = certificates.map((c, i) => {
-            this.props.componentDidMount();
+            // this.props.componentDidMount();
             const id = i + 1;
             return (
                 <div key={id} id={`certificate-info${id}`}>

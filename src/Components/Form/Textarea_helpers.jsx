@@ -1,9 +1,10 @@
 import React from 'react';
 
 const Textarea = (props) => {
-    const { key, s, t, id, cn, name, val, ph, onChange } = props;
+    const { ref, key, s, t, id, cn, name, val, ph, onChange} = props;
     return (
         <textarea
+            ref={ref}
             key={key}
             style={s}
             type={t}
@@ -14,6 +15,7 @@ const Textarea = (props) => {
             placeholder={ph}
             onChange={onChange}
             rows="1">
+        
         </textarea>
     );
 }

@@ -55,7 +55,6 @@ class Interests extends React.Component {
         const interests = this.state.interests;
         const iteratorComponent = <IteratorComponent valInfo="interests" onAdd={this.addNewStateObj} onRmv={this.rmvLatestStateObj} />
         const iterableComponent = interests.map((interest, i) => {
-            this.props.componentDidMount();
             const id = i + 1;
             if(!toggleVisibility){
                 return(
