@@ -44,7 +44,7 @@ class Profile extends React.Component {
             let splitVal = val.split(',');
             this.setState(prevState => ({
                 [`${nameValue}`]: {
-                    ...prevState.[nameValue],
+                    ...prevState[nameValue],
                     city: splitVal[0] || '',
                     state: splitVal[1] || '',
                     zip: splitVal[2] || ''

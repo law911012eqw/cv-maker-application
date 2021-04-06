@@ -3,7 +3,6 @@ import { Placeholders } from '../Form/Placeholders';
 import Input from '../Form/Input_helpers';
 import Textarea from '../Form/Textarea_helpers';
 import { IteratorComponent, IteratorComponent2 } from '../Form/iterator';
-import { v4 as uuidv4 } from 'uuid';
 
 class Work extends React.Component {
     constructor(props) {
@@ -55,17 +54,17 @@ class Work extends React.Component {
         const arrIndex = arr[3]; //index of arr inside state arr
         const state = arr[0]; //state name of the first arr
         //copy of the existing notes
-        let copyArray = [...this.state.experience[index].notes];
-
-        copyArray[arrIndex] = value;
-        this.setState(prevState => ({
-            ...prevState,
-            [state]: [{
-                ...prevState.experience[index],
-                [stateInArr]: copyArray //overwrite the current notes with the updated version
-            }]
-        }))
-        console.log(index);
+        const copyExp = this.state.experience;
+        // let copyArray = [...this.state.experience[index].notes];
+        // copyArray[arrIndex] = value;
+        copyExp[index].notes[arrIndex] = value;
+        this.setState({ experience: copyExp })
+        // this.setState(prevState => ({
+        //     [state]: [{
+        //         ...prevState.experience[index],
+        //         [stateInArr]: copyArray //overwrite the current notes with the updated version
+        //     }]
+        // }))
     }
     //add new state obj
     addNewStateObj(e) {
@@ -78,20 +77,23 @@ class Work extends React.Component {
                 [`yearEnd${len + 1}`]: '',
                 [`companyName${len + 1}`]: '',
                 [`companyPos${len + 1}`]: '',
-                [`notes`]: [''],
+                [`notes`]: ['Enter important finished tasks, achievement and projects that may be beneficial for your professional credentials'],
             }]
         }))
     }
     addNewNote(e) {
         e.preventDefault();
         const index = this.indexIsolator(e);
+        //Using the copy state method which is by cloning the entire state as copy then
+        //modifying the specific property from the copied array then eventually set
+        // the modified copied array as the new state
+        const copyExp = this.state.experience;
         const newNote = this.state.experience[index].notes.concat('');
-        this.setState(prevState => ({
-            experience: [{
-                ...prevState.experience[index],
-                notes: newNote //add an additional element
-            }]
-        }))
+        copyExp[index] = {...copyExp[index], notes: newNote}
+        console.log(this.state.experience);
+        this.setState({
+            experience: copyExp
+        })
     }
     rmvLatestStateObj(e) {
         e.preventDefault();
@@ -151,7 +153,7 @@ class Work extends React.Component {
                             id={`exp-start-year${id}`}
                             cn="exp-start-year"
                             name={`experience[${index}].yearStart${id}`}
-                            val={exp.[`yearStart${id}`]}
+                            val={exp[`yearStart${id}`]}
                             ph={Placeholders.experiences[0].yearStart}
                             onChange={this.handleFieldChangeWithObj}
                         />
@@ -161,7 +163,7 @@ class Work extends React.Component {
                             id={`exp-end-year${id}`}
                             cn="exp-end-year"
                             name={`experience[${index}].yearEnd${id}`}
-                            val={exp.[`yearEnd${id}`]}
+                            val={exp[`yearEnd${id}`]}
                             ph={Placeholders.experiences[0].yearEnd}
                             onChange={this.handleFieldChangeWithObj}
                         />
@@ -171,7 +173,7 @@ class Work extends React.Component {
                         id={`exp-name${id}`}
                         cn="exp-name"
                         name={`experience[${index}].companyName${id}`}
-                        val={exp.[`companyName${id}`]}
+                        val={exp[`companyName${id}`]}
                         ph={Placeholders.experiences[0].name}
                         onChange={this.handleFieldChangeWithObj}
                     />
@@ -180,7 +182,7 @@ class Work extends React.Component {
                         id={`exp-position${id}`}
                         cn="exp-position"
                         name={`experience[${index}].companyPos${id}`}
-                        val={exp.[`companyPos${id}`]}
+                        val={exp[`companyPos${id}`]}
                         ph={Placeholders.experiences[0].position}
                         onChange={this.handleFieldChangeWithObj}
                     />

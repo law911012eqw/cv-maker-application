@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Components of the app
 import Profile from './Components/Main/Profile';
@@ -50,7 +50,6 @@ const App = () => {
     
     function autoresizeTextarea() {
       const tx = document.getElementsByTagName('textarea');
-      console.log(tx.length);
       for (let i = 0; i < tx.length; i++) {
         tx[i].setAttribute('style', 'height:' + (tx[i].scrollHeight) + 'px;overflow-y:hidden;');
         tx[i].addEventListener("input", OnInput, false);
@@ -88,7 +87,7 @@ const App = () => {
           <p id="note">Note: Resize the browser page until the entire cv page is visible to convert the entire page as pdf. Text auto resizes functionality is activated from save/edit toggle. </p>
           <button id="download" className="toggle-save">
             Download
-            <i class="fas fa-download"></i>
+            <i className="fas fa-download"></i>
           </button>
         </div>
     </div>

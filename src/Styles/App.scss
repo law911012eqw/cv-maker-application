@@ -5,7 +5,7 @@ $remove-btn-bg: rgb(226, 93, 93);
 
 $font-color-dates: rgb(206, 141, 206);
 $form-width: 1300px;
-div :not(#profile-container):not(.exp-name){
+div :not(#profile-container):not(.exp-name):not(.skill-wrapper){
   margin-bottom: 12px;
 }
 
@@ -331,7 +331,7 @@ input[ type=date ] { margin: 1px 6px; }
   font-family: 'Precious';
   margin-left: -20px;
   padding: 8px;
-  border-left: 5px solid rgb(152, 153, 153);
+  border-left: 5px solid rgb(152, 153, 152);
   background: rgb(219, 219, 220)
 }
 #skills-section{
@@ -339,9 +339,14 @@ input[ type=date ] { margin: 1px 6px; }
   color: rgb(36, 35, 35);
   background: rgb(240, 242, 241);
 }
+.skill-list{
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -20px;
+}
 .skills-container{
   font-size: 24px;
-  margin: 30px 60px;
+  margin: 20px 40px;
 }
 .skill-wrapper{
   display: -webkit-box;
@@ -352,26 +357,22 @@ input[ type=date ] { margin: 1px 6px; }
       -ms-flex-direction: row;
           flex-direction: row;
   cursor: pointer;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  height: auto;
+  background: rgb(11, 151, 11);
+  color: rgb(253, 253, 253);
+  border-radius: 6px;
+  padding: 5px 2px;
+  margin-right: 5px;
+  font-size: 0.6em;
 }
 .skill-wrapper:hover{
   -webkit-box-shadow: inset 0 0 100px 100px rgba(165, 165, 165, 0.1);
           box-shadow: inset 0 0 100px 100px rgba(165, 165, 165, 0.1);
-  button{
-    visibility: visible;
-    -webkit-transition: visibility 2s ease-in;
-    -o-transition: visibility 2s ease-in;
-    transition: visibility 2s ease-in;
-  }
 }
 .round-btn{
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: rgb(240, 111, 111);
+  background: rgb(169, 179, 169);
   color: white;
   margin-left: 12px;
   line-height: 0.3;
@@ -381,9 +382,6 @@ input[ type=date ] { margin: 1px 6px; }
 .round-btn:hover{
   -webkit-box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
           box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
-}
-.skill-name{
-  font-size: 0.7em;
 }
 .skill-addition-wrapper{
   display: -webkit-box;
@@ -566,6 +564,7 @@ input[ type=checkbox ]{
   align-items: center;
 }
 #download > i{
+  padding: auto;
   transform: scale(1);
 }
 #note{
