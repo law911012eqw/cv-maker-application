@@ -11,6 +11,9 @@ import Langs from './Components/Optional/Languages';
 import Options from './Components/Options/Options';
 import Input from './Components/Form/Input_helpers';
 
+//scripts from other folders
+import './Scripts/pdf';
+
 //stylesheets
 import './Styles/App.scss';
 
@@ -65,7 +68,7 @@ const App = () => {
     }
   })
   return (
-    <div>
+    <div id="form-wrapper">
       <form id="main-form" autoComplete="off">
         {/* if this is true the fieldset is enabled, otherwise it toggles to disable */}
         <fieldset disabled={isDisabled}>
@@ -83,11 +86,16 @@ const App = () => {
             </div>
           </div>
         </fieldset>
-        <div id="buttons-section">
-          <Input t="submit" id="toggle-save" val={buttonText} />
-        </div>
       </form>
       <Options />
+      <div id="buttons-section">
+          <Input t="submit" id="toggle-save" cn="toggle-save" val={buttonText} />
+          <p>Note: Resize the browser page untill the entire cv page is visible to convert the entire page as pdf.</p>
+          <button id="download" className="toggle-save">
+            Download
+            <i class="fas fa-download"></i>
+          </button>
+        </div>
     </div>
   );
 }

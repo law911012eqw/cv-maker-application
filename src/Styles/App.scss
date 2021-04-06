@@ -4,7 +4,7 @@ $profile-bg: rgb(34,54,56);
 $remove-btn-bg: rgb(226, 93, 93);
 
 $font-color-dates: rgb(206, 141, 206);
-
+$form-width: 1300px;
 div :not(#profile-container):not(.exp-name){
   margin-bottom: 12px;
 }
@@ -13,7 +13,7 @@ div :not(#profile-container):not(.exp-name){
 #main-form {
   background: white;
   margin: 0 auto;
-  width: 1300px; 
+  width: $form-width; 
   -webkit-box-shadow: 1px 1px 4px 3px rgb(141, 141, 141); 
           box-shadow: 1px 1px 4px 3px rgb(141, 141, 141);
 }
@@ -60,14 +60,14 @@ input[ type=date ] { margin: 1px 6px; }
   margin: 20px 0;
 }
 
-#toggle-save{
+.toggle-save{
   margin: 15px;
   padding: 8px;
   border-radius: 45px;
   border: 2px solid rgb(199, 192, 192);
 }
 
-#toggle-save{
+.toggle-save{
   background: $profile-bg;
   color: white;
 }
@@ -181,9 +181,13 @@ input[ type=date ] { margin: 1px 6px; }
 .add-info-text2{
   font-size: 14px;
 }
-#print-btn{
-  float: right;
-  margin-right: 20px;
+#buttons-section{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 25px;
+  width: $form-width;
+  margin: 0 auto;
 }
 /********** GENERAL-INFO SECTION **********/
 #profile-upper-left, #profile-upper-right{
@@ -555,5 +559,13 @@ input[ type=checkbox ]{
       -ms-transform: rotate(180deg) translateX(-1px) translateY(-7px) scale(2.6);
           transform: rotateZ(180deg) translateX(-1px) translateY(-7px) scale(2.6);
   color: white;
+} 
+#download{
+  display:flex;
+  flex-flow: row;
+  align-items: center;
+}
+#download > i{
+  transform: scale(1);
 }
 
