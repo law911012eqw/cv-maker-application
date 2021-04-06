@@ -44,18 +44,13 @@ const App = () => {
     isDisabled === true ? setButtonText('Edit') : setButtonText('Save');
   }, [isDisabled])
 
-  const isInitialMount = useRef(true);
   useEffect(() => {
     //load this useEffect at DOM mount and dom update
-    if (isInitialMount.current) {
-      autoresizeTextarea();
-      isInitialMount.current = false;
-    } else {
-      autoresizeTextarea();
-    }
-
+    autoresizeTextarea();
+    
     function autoresizeTextarea() {
       const tx = document.getElementsByTagName('textarea');
+      console.log(tx.length);
       for (let i = 0; i < tx.length; i++) {
         tx[i].setAttribute('style', 'height:' + (tx[i].scrollHeight) + 'px;overflow-y:hidden;');
         tx[i].addEventListener("input", OnInput, false);
@@ -90,7 +85,7 @@ const App = () => {
       <Options />
       <div id="buttons-section">
           <Input t="submit" id="toggle-save" cn="toggle-save" val={buttonText} />
-          <p>Note: Resize the browser page untill the entire cv page is visible to convert the entire page as pdf.</p>
+          <p id="note">Note: Resize the browser page until the entire cv page is visible to convert the entire page as pdf. Text auto resizes functionality is activated from save/edit toggle. </p>
           <button id="download" className="toggle-save">
             Download
             <i class="fas fa-download"></i>

@@ -10,7 +10,7 @@ window.onload = function () {
                 filename: 'cv.pdf',
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { width: form.clientWidth, height: form.clientHeight, scale: 2 },
-                jsPDF: { unit: 'in', format: 'letter', orientation: 'l' }
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
             };
             html2pdf().from(form).set(opt).save();
         })

@@ -8,3 +8,7 @@ This app provides a simple CV template deisng to build a short yet sufficient ov
 #### Built With:
 * React JS
 * Sass
+
+#### Concurrent Issues - 4/6/2021
+* Not initially mounted inputs does not enable auto text resize functionality.
+* Nested array of objects is not working as expected.
